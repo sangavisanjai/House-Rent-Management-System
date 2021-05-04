@@ -1,0 +1,474 @@
+﻿@model HouseRentManagementSystem.ViewModel.Addproperty
+@{
+    ViewBag.Title = "Add Property";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="@Url.Content("~/Scripts/jquery.validate.min.js")" type="text/javascript"></script>    
+    <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.min.js")" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+    <title>Document</title>
+    <style>
+        img {
+            vertical-align: middle;
+            border-style: none;
+            height: 70px;
+            width: 70px;
+            margin-right: 20px;
+            margin-top:1.5rem;
+        }
+        body {
+            margin-top: 5rem;
+        }
+
+        h2 {
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .input-group-append i {
+            margin-top: -2.4rem;
+            margin-left: -2.25rem;
+            font-size: 1.6rem;
+            padding: 0.4rem 0.5rem;
+            background-color: #93bfb2;
+            overflow: hidden;
+        }
+
+        .input-validation-error {
+            border: 1px solid red;
+        }
+
+        .alert {
+            cursor: pointer;
+        }
+
+        #myImg {
+            display:flex;
+            margin-left:20px;
+            height:50px;
+            width:50px;
+        }
+        #bttn{
+            margin-top:2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>Add Property</h2>
+    @using (Html.BeginForm("SaveAddpropertyDetails", "House", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+
+
+<div>
+    @if (@ViewBag.Message != null)
+    {
+        <div class="alert alert-danger alert-dismissable">
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fas fa-exclamation-triangle"></i>
+            @ViewBag.Message
+        </div>
+    }
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group input-group">
+                    <div class="control-label col-md-12" id="Label">Property Name</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropName, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-home"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropName, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+                @*
+        <!--
+            <div class="form-group input-group">
+                <div class="control-label col-md-12" id="Label">Property Type</div>
+                <div class="col-md-11">
+
+                   @Html.TextBoxFor(a => a.PropType, new { @class = "form-control" })
+                    <div class="input-group-append">
+                        <i class="fas fa-city"></i>
+                    </div>
+
+
+                    @Html.ValidationMessageFor(a => a.PropType, "", new { @class = "text - danger", @style = "color:red" })
+
+            </div>
+                    </div>
+        -->*@
+                @{
+                    List<SelectListItem> TypeItems = new List<SelectListItem>();
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Residential Appartment",
+                        Value = "Residential Appartment"
+                    });
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Studio Apartment",
+                        Value = "Studio Apartment"
+                    });
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Serviced Apartments",
+                        Value = "Serviced Apartments"
+                    });
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Farm House",
+                        Value = "Farm House"
+                    });
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Independent/Builder Floor",
+                        Value = "Independent/Builder Floor"
+                    });
+                    TypeItems.Add(new SelectListItem
+                    {
+                        Text = "Independent House/Villa",
+                        Value = "Independent House/Villa"
+                    });
+                }
+                <div class="form-group input-group">
+                    <div class="control-label col-md-12" id="Label">Property Type</div>
+                    <div class="col-md-11">
+
+
+                        @Html.DropDownListFor(a => a.PropType, TypeItems, " ", new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-city"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropType, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+                @*
+
+        <div class="form-group input-group">
+            <div class="control-label col-md-12" id="Label">Property Status</div>
+            <div class="col-md-11">
+
+                @Html.TextBoxFor(a => a.PropStatus, new { @class = "form-control" })
+                <div class="input-group-append">
+                    <i class="fas fa-door-closed"></i>
+                </div>
+
+
+                @Html.ValidationMessageFor(a => a.PropStatus, "", new { @class = "text - danger", @style = "color:red" })
+
+            </div>
+        </div>
+                *@
+
+                @{
+                    List<SelectListItem> StatusItems = new List<SelectListItem>();
+
+
+                    StatusItems.Add(new SelectListItem
+                    {
+                        Text = "Under Construction",
+                        Value = "Under Construction"
+                    });
+                    StatusItems.Add(new SelectListItem
+                    {
+                        Text = "Ready To Move",
+                        Value = "Ready To Move"
+                    });
+                    StatusItems.Add(new SelectListItem
+                    {
+                        Text = "New Launch",
+                        Value = "New Launch"
+                    });
+                }
+                <div class="form-group input-group">
+                    <div class="control-label col-md-12" id="Label">Property Status</div>
+                    <div class="col-md-11">
+
+
+                        @Html.DropDownListFor(a => a.PropStatus, StatusItems, " ", new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-door-closed"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropStatus, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Property Rent</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.Proprent, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-tags"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.Proprent, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Property Address</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropAddress, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-location-arrow"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropAddress, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Property Contact</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropContact, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropContact, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Property Configuration</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropDescription, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropDescription, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Size</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropSize, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-warehouse"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropSize, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Front Facing Direction</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.PropFacing, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="far fa-compass"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PropFacing, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+                @*
+        <div class="form-group input-group">
+            <div class="control-label col-md-6" id="Label">PetFriendly</div>
+            <div class="col-md-11">
+
+                @Html.TextBoxFor(a => a.PetFriendly, new { @class = "form-control" })
+                <div class="input-group-append">
+                    <i class="fas fa-paw"></i>
+                </div>
+
+
+                @Html.ValidationMessageFor(a => a.PetFriendly, "", new { @class = "text - danger", @style = "color:red" })
+
+            </div>
+        </div>
+
+                *@
+
+                @{
+                    List<SelectListItem> PetFriendly = new List<SelectListItem>();
+
+
+
+                    PetFriendly.Add(new SelectListItem
+                    {
+                        Text = "Yes",
+                        Value = "Yes"
+                    });
+                    PetFriendly.Add(new SelectListItem
+                    {
+                        Text = "No",
+                        Value = "No"
+                    });
+                }
+                <div class="form-group input-group">
+                    <div class="control-label col-md-12" id="Label">PetFriendly</div>
+                    <div class="col-md-11">
+
+
+                        @Html.DropDownListFor(a => a.PetFriendly, PetFriendly, " ", new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-paw"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.PetFriendly, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Only AvailableFor</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.AvailableFor, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-users"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.AvailableFor, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Flooring Type</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.Flooring, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fab fa-houzz"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.Flooring, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+
+                <div class="form-group input-group">
+                    <div class="control-label col-md-6" id="Label">Available From</div>
+                    <div class="col-md-11">
+
+                        @Html.TextBoxFor(a => a.AvailableFrom, new { @class = "form-control" })
+                        <div class="input-group-append">
+                            <i class="fas fa-calendar-check"></i>
+                        </div>
+
+
+                        @Html.ValidationMessageFor(a => a.AvailableFrom, "", new { @class = "text - danger", @style = "color:red" })
+
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="control-label col-md-6" id="Label">Property Image </div>
+                    <div class="col-md-11">
+                        <input type="file" name="image1" id="image1" multiple="multiple"onchange="readURL(this);" />
+                    </div>
+                    <div id="myImg" >
+                    </div>
+                    <script>
+                        $(function () {
+                            $(":file").change(function () {
+                                var div = document.getElementById("myImg");
+                                div.innerHTML = "";
+                                if (this.files && this.files[0]) {
+                                    for (var i = 0; i < this.files.length; i++) {
+                                        var reader = new FileReader();
+                                        reader.onload = imageIsLoaded;
+                                        reader.readAsDataURL(this.files[i]);
+                                    }
+                                }
+                            });
+                        });
+
+                        function imageIsLoaded(e) {
+                            $('#myImg').append('<img src=' + e.target.result + '>');
+                        };
+                    </script>
+                </div>
+
+            </div>
+                </div>
+            </div>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="form-group">
+
+                <div>
+                    <input type="submit" value="Add Property" class="btn btn-primary col-md-12" id="bttn" style="font-weight:800; height:3rem" />
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+
+</div>
+    }
+
+</body>
+</html>

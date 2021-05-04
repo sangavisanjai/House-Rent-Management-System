@@ -1,0 +1,136 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/Image/logo2.png" />
+    
+
+    <style>
+
+        a.navbar-brand {
+            color: black;
+        }
+
+        .navbar {
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius: 0;
+        }
+
+        #ProfNmae {
+            color: black;
+            margin-top: 10px;
+            font-size: 1.9rem;
+            font-weight: 600;
+        }
+
+        #dropbtn {
+            font-weight: 900;
+            color: black;
+            padding: 16px;
+            min-width: 89px;
+            font-size: 16px;
+            border: none;
+            background-color: #347AB6;
+        }
+
+        .nav a {
+            color: black;
+        }
+
+        #AboutUs {
+            font-size: 18px;
+        }
+        .dropdown-menu {
+            min-width:120px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-expand-sm bg-primary">
+        <div class="container" style="font-weight: 900;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapse" data-toggle="collapse" data-target="navbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand navbar-image" href="#"><img src="~/Content/Image/logo3.jpg" alt="House_Logo" style="height:40px;width:40px;margin-top:-20%;border-radius:50%;"></a>
+                @Html.ActionLink("HouseRent Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse" style="color:black">
+                <ul class="nav navbar-nav " style="float:right;">
+
+                    <li>@Html.ActionLink("Properties", "UserData", "User", new { @class = "navbar-brand" })</li>
+                   
+                                <li> @Html.ActionLink("Booking", "UserBooking", "User", new { @class = "navbar-brand" })</li>
+                            
+
+                        &emsp;&emsp;
+                        <li>
+                            <div class="dropdown">
+
+                                <button class="btn btn-primary dropdown-toggle" id="dropbtn" type="button" data-toggle="dropdown">
+                                    <img src="~/Content/Image/userlogo4.png" alt="House_Logo" style="height:40px;width:40px;border-radius:50%;margin-top:-8%;">
+                                    <i class="fa fa-caret-down"></i>
+                                </button>
+
+                                <ul class="dropdown-menu">
+                                    <li>@Html.ActionLink("My Profile", "UserData1", "User", new { @class = "MyAction" })</li>
+
+                                    <li>
+                                        @if (Request.IsAuthenticated)
+                                        {
+
+                                            @Html.ActionLink("Log Out", "Logout", "Account", new { @class = "" })
+                                        }
+                                        else
+                                        {
+
+                                            @Html.ActionLink("Login", "Login", "Account", new { @class = "" })
+                                        }
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year By Sangavi Kandhasamy</p>
+        </footer>
+    </div>
+
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
+        window.onclick = function (e) {
+            if (!e.target.matches('.dropbtn')) {
+                var myDropdown = document.getElementById("myDropdown");
+                if (myDropdown.classList.contains('show')) {
+                    myDropdown.classList.remove('show');
+                }
+            }
+        }
+    </script>
+</body>
+</html>

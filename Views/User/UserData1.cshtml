@@ -1,0 +1,132 @@
+﻿@model IEnumerable<HouseRentManagementSystem.Models.RegisterUser>
+
+@{
+    ViewBag.Title = "My Profile";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<html>
+<head>
+    <style>
+        a.my-class {
+            color: Yellow
+        }
+
+        .table {
+            background-color: aliceblue;
+            width:60%;
+            font-size:1.6rem;
+            margin-left:20%;
+        }
+        .table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .table tr:hover {
+            background-color: #ddd;
+        }
+        .table th{
+            margin-left:20px;
+        }
+        .MyAction {
+            color: black;
+            text-decoration: none;
+            
+        }
+    </style>
+</head>
+<body>
+<h2 style="text-align:center"><b>My Profile</b></h2>
+<div class="container">
+   
+    <br /><br />
+    <table class="table">
+
+
+
+        @foreach (var item in Model)
+        {
+        <tr>
+
+            <th>
+                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; 
+            </th>
+            <td>
+                &emsp;&emsp;
+
+                @{
+                    if (ViewBag.image != null)
+                    {
+                        var base64 = Convert.ToBase64String(ViewBag.image);
+                        var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                        <img src="@imgsrc" style="height:100px; width:100px;margin-left:-40%; border-radius:50%;">
+                    }
+
+                }
+            </td>
+            
+        </tr>
+            <tr>
+
+                <th>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; @Html.DisplayNameFor(model => model.FirstName)
+                </th>
+                <td>
+                    &emsp;&emsp; @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+
+            </tr>
+            <tr>
+                <th>
+                    &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp; @Html.DisplayNameFor(model => model.LastName)
+                </th>
+                <td>
+                    &emsp;&emsp; @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp; @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <td>
+                    &emsp;&emsp;     @Html.DisplayFor(modelItem => item.Email)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp; @Html.DisplayNameFor(model => model.Password)
+                </th>
+                <td>
+                    &emsp;&emsp; @Html.DisplayFor(modelItem => item.Password)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  @Html.DisplayNameFor(model => model.MobileNo)
+                </th>
+                <td>
+                    &emsp;&emsp;  @Html.DisplayFor(modelItem => item.MobileNo)
+                </td>
+            </tr>
+            <tr>
+                <th>
+                    &emsp;&emsp;&emsp;&emsp; &emsp;&emsp;&emsp;&emsp; @Html.DisplayNameFor(model => model.AadharNo)
+                </th>
+                <td>
+                    &emsp;&emsp;  @Html.DisplayFor(modelItem => item.AadharNo)
+                </td>
+            </tr>
+
+
+            <tr>
+                <th></th>
+                <td>
+                    <button class="btn btn-primary" style="padding:7px 25px;margin-left:-25%;font-size:1.7rem;"> <b> @Html.ActionLink("Edit", "Edit1", new { id = item.Id }, new { @class = "MyAction" })</b></button>
+                </td>
+            </tr>
+
+        }
+
+    </table>
+</div>
+</body>
+</html>

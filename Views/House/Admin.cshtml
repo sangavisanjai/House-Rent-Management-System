@@ -1,0 +1,82 @@
+﻿
+
+@{
+    ViewBag.Title = "UserData";
+    Layout = "~/Views/Shared/_Layout1.cshtml";}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width" />
+    <title>Admin</title>
+    <style>
+        body {
+            margin-top: 2.5rem;
+        }
+        #bg-img {
+            left: 0;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+        }
+        p content {
+            font-weight: 700;
+            font-size: 5rem;
+            color: white;
+            position: fixed;
+            z-index: 1;
+            font-family: family-inherit;
+            opacity: 1;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+
+            p content span {
+                color: #ffd461;
+            }
+
+        #btnn {
+            position: fixed;
+            z-index: 1;
+            font-family: family-inherit;
+            opacity: 1;
+            position: absolute;
+            top: 40%;
+            left: 50%;
+            margin-right: -50%;
+            transform: translate(-50%, -50%)
+        }
+        .alert {
+            position: absolute;
+            top: 20%;
+            left: 50%;
+            -ms-transform: translate(-50%, -50%);
+            transform: translate(-50%, -50%);
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body>
+    Admin
+
+    <img src="~/Content/Image/sellerpng3.jpg" id="bg-img" />
+    <p>
+        <content> Welcome <span>@Html.Label(Convert.ToString(Session["UserName"])) </span></content>
+    </p>
+    @if (@ViewBag.saved != null)
+    {
+        <div class="alert alert-success alert-dismissable col-lg-4" >
+            <a class="panel-close close" data-dismiss="alert">×</a>
+            <i class="fas fa-check-circle"></i>
+            @ViewBag.saved
+        </div>
+
+    }
+</body>
+</html>

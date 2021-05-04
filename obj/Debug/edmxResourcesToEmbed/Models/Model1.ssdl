@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Database1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Booking">
+    <Key>
+      <PropertyRef Name="BookId" />
+    </Key>
+    <Property Name="BookId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropType" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropStatus" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropRent" Type="bigint" Nullable="false" />
+    <Property Name="PropAddress" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PropContact" Type="bigint" Nullable="false" />
+    <Property Name="Book" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PropSize" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PropFacing" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PetFriendly" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="AvailableFor" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="Flooring" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="AvailableFrom" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="HImg1" Type="varbinary(max)" />
+    <Property Name="CustEmail" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="SellEmail" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="SFirstName" Type="nchar" MaxLength="10" />
+    <Property Name="SLastName" Type="nchar" MaxLength="10" />
+    <Property Name="SMobileNumber" Type="bigint" />
+    <Property Name="SProfileImage" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="PropId" />
+    </Key>
+    <Property Name="PropId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PropName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropType" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropStatus" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="PropRent" Type="int" Nullable="false" />
+    <Property Name="PropAddress" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PropDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="PropContact" Type="bigint" Nullable="false" />
+    <Property Name="PropSize" Type="nchar" MaxLength="20" />
+    <Property Name="PropFacing" Type="nchar" MaxLength="10" />
+    <Property Name="PetFriendly" Type="nchar" MaxLength="10" />
+    <Property Name="AvailableFor" Type="nchar" MaxLength="20" />
+    <Property Name="Flooring" Type="nchar" MaxLength="20" />
+    <Property Name="AvailableFrom" Type="nchar" MaxLength="10" />
+    <Property Name="HImg1" Type="varbinary(max)" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="HImg2" Type="varbinary(max)" />
+    <Property Name="HImg3" Type="varbinary(max)" />
+    <Property Name="HImg4" Type="varbinary(max)" />
+    <Property Name="HImg5" Type="varbinary(max)" />
+    <Property Name="HImg6" Type="varbinary(max)" />
+    <Property Name="HImg7" Type="varbinary(max)" />
+    <Property Name="HImg8" Type="varbinary(max)" />
+    <Property Name="HImg9" Type="varbinary(max)" />
+    <Property Name="HImg10" Type="varbinary(max)" />
+    <Property Name="BookDetails" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="RegisterCustomer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="MobileNo" Type="bigint" Nullable="false" />
+    <Property Name="AadharNo" Type="bigint" Nullable="false" />
+    <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProfileImage" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="RegisterUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="MobileNo" Type="bigint" Nullable="false" />
+    <Property Name="AadharNo" Type="bigint" Nullable="false" />
+    <Property Name="ResetPasswordCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="ProfileImage" Type="varbinary(max)" />
+  </EntityType>
+  <EntityContainer Name="Database1ModelStoreContainer">
+    <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="House" EntityType="Self.House" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegisterCustomer" EntityType="Self.RegisterCustomer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RegisterUser" EntityType="Self.RegisterUser" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

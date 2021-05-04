@@ -1,0 +1,165 @@
+﻿@model IEnumerable<HouseRentManagementSystem.Models.Booking>
+
+@{
+    
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    <style>
+        .container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl {
+            width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: 1rem;
+            margin-left: 1.3rem;
+        }
+        h2 {
+            text-align: center;
+            font-weight: 700;
+        }
+       #bttn a{
+                  color:white;
+              }
+       .request{
+          color:darkblue;
+          font-size:2rem;
+          font-weight:700;
+       }
+        .Declined {
+            color: orangered;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+        .Accepted {
+            color: green;
+            font-size: 2rem;
+            font-weight: 700;
+        }
+      
+    </style>
+
+</head>
+<body>
+  <h2>Booking Lists</h2>
+    <table class="table" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    House
+                </th>
+                <th>
+                    Name
+                </th>
+              
+                <th>
+                    Location
+                </th>
+
+                <th>
+                    Seller Email
+                    
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Size
+                </th>
+                <th>
+                    Status
+                </th>
+                <th></th>
+            </tr>
+            </thead>
+            @foreach (var item in Model)
+            {
+    <tr>
+        <td>
+            <div class="container">
+                @{
+                    var imageDataURL = "";
+
+                    if (item.HImg1 != null)
+                    {
+                        string imageBase64Data = Convert.ToBase64String(item.HImg1);
+                        imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                        <img src="@imageDataURL" title="House" style="width:5rem; height:5rem; border-radius:1%;" name="ImageHImg1" />
+                        <p name="imageUrl">@imageDataURL</p>
+
+                    }
+                    else
+                    {
+                        <img src="~/Content/Image/gallery2.png" title="House Image" class="imgig1" style="width:5rem; height:5rem;" />
+                    }
+
+                }
+            </div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropAddress)
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.PropDescription)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PropSize)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SellEmail)
+        </td>
+        <td>
+            
+            @if (item.Book == "request")
+            {
+                <div class="request">
+                    @item.Book
+                </div>
+            }
+            else if (item.Book == "Declined")
+            {
+                <div class="Declined">
+                    @item.Book
+                </div>
+            }
+            else if (item.Book == "Accepted")
+            {
+                <div class="Accepted">
+                    @item.Book
+                </div>
+            }
+        </td>
+        <td>
+            @if (item.Book == "request")
+            {
+                using (Html.BeginForm("Delete", "User"))
+                {
+                    <button type="button" class="btn btn-danger" id="bttn">
+                        @Html.ActionLink("Cancel Booking", "Delete", new { id = item.BookId, @class = "Delete" })
+                    </button>
+                }
+            }
+        </td>
+
+
+
+    </tr>
+            }
+
+    </table>
+</body>
+</html>

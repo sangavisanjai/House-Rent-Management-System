@@ -1,0 +1,166 @@
+﻿@model IEnumerable<HouseRentManagementSystem.Models.House>
+
+@{
+    ViewBag.Title = "ViewProperty";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+
+<html>
+
+<head>
+    <style>
+        #topcontentid ul li {
+            font-weight: 600;
+            font-size: 20px;
+            list-style-type: none;
+            margin-top:12px;
+        }
+        #fluidcontainer {
+            border-radius: 5px;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+        #fluidcontainer .row{
+            margin-top:20px;
+        }
+            #fluidcontainer:hover {
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.25);
+            }
+            #buttonedit {
+                color: black;
+                text-decoration: none;
+            }
+        .MyAction {
+            color: black;
+            text-decoration: none;
+            
+            font-weight:700;
+        }
+            .MyAction:hover {
+                color: black;
+                text-decoration: none;
+            }
+            #bottomcontentid ul li {
+                list-style-type: none;
+                line-height: 2.2em;
+                font-size: 16px;
+                overflow: unset;
+            }
+        #bottomcontentid ul {
+            columns: 3;
+            -webkit-columns: 3;
+            -moz-columns: 3;
+        }
+        #bottomcontentid ul li content{
+            font-weight:600;
+        }
+        #buttonedit {
+                     
+            padding: 1.2rem 1.2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-left:5rem;
+        }
+            #buttonedit:hover {
+                box-shadow: 0 2px 6px 0 rgb(0, 110, 255), 0 3px 10px 0 rgba(0, 0, 0, 0.19);
+            }
+        .imgig1 {
+            width:20rem;
+            height: 20rem;
+            margin-top:1rem;
+            overflow: hidden;
+        }
+            .imgig1:hover {
+                transition: transform .5s ease;
+                transform: scale(1.009);
+            }
+        .full{
+            margin-top:8rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>ViewProperty</h2>
+
+   
+
+    <div class="full">
+       
+        @foreach (var item in Model)
+        {
+            if (@ViewBag.useremail == (@item.Email))
+            {
+                <div class="container-fluid" id="fluidcontainer">
+                    <div class="row">
+                        <div class="col-lg-4" id="imgig">
+                            @{
+                                var imageDataURL = "";
+
+                                if (item.HImg1 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(item.HImg1);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <img src="@imageDataURL" title="@imageDataURL" class="imgig1" />
+                                }
+                                else
+                                {
+                                    <img src="~/Content/Image/gallery2.png" title="House Image" class="imgig1" />
+                                }
+
+                            }
+                        </div>
+                        <div class="col-lg-8" id="topcontentid">
+                            <ul>
+                                <li>@Html.DisplayFor(modelItem => item.PropName)</li>
+                                <li>@Html.DisplayFor(modelItem => item.PropAddress)</li>
+
+                                <li>@Html.DisplayFor(modelItem => item.PropType)</li>
+
+                                <li>@Html.DisplayFor(modelItem => item.PropDescription)</li>
+
+                                <li>@Html.DisplayFor(modelItem => item.PropSize) </li>
+
+
+                                <li>@Html.DisplayFor(modelItem => item.PropStatus)</li>
+
+                                <li>
+                                    ₹@Html.DisplayFor(modelItem => item.PropRent)
+                                </li>
+
+
+                                
+
+                            </ul>
+
+                        </div>
+
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-sm-3 col-md-6 col-lg-4">
+                            <button class="btn btn-info" id="buttonedit">  @Html.ActionLink("Edit Property", "EditProperty", new { id = item.PropId }, new { @class = "MyAction" })</button>
+                        </div>
+                        <div id="bottomcontentid" class="col-sm-6 col-md-6 col-lg-8">
+                            <ul>
+
+                                <li><content>Contact: </content>@Html.DisplayFor(modelItem => item.PropContact)</li>
+                                <li><content>Front Facing:</content> @Html.DisplayFor(modelItem => item.PropFacing)</li>
+                                <li><content>Pet Friendly:</content>  @Html.DisplayFor(modelItem => item.PetFriendly)</li>
+                                <li> <content>Available For:</content> @Html.DisplayFor(modelItem => item.AvailableFor)</li>
+                                <li><content>Flooring:</content>  @Html.DisplayFor(modelItem => item.Flooring)</li>
+                                <li><content>Available From:</content>  @Html.DisplayFor(modelItem => item.AvailableFrom)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+
+                </div>
+                <br />
+                <br />
+            }
+        }
+    </div>
+</body>
+</html>
+        

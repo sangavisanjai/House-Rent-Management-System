@@ -1,0 +1,205 @@
+﻿@model IEnumerable<HouseRentManagementSystem.Models.House>
+@{
+    ViewBag.Title = "Properties";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+
+
+}
+
+<html>
+<head>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        #myprofilebtn {
+            float: right;
+            background-color: darkgoldenrod;
+        }
+
+        .MyAction {
+            color: black;
+            text-decoration: none;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        #main .container {
+            right: 200px;
+            background-color: #f2f2f2;
+
+        }
+        .MyAction {
+            color: black;
+            text-decoration: none;
+
+        }
+            .MyAction:hover {
+                text-decoration: none;
+                color: black;
+
+            }
+            * {
+                font-family: 'Roboto Slab', serif;
+            }
+        .propname{
+            font-size:2rem;
+            font-weight:700;
+            text-transform:uppercase;
+            text-align:center;
+            margin-top:1.5rem;
+        }
+        #btnsubmit {
+            padding: 1.01rem 4rem;
+        }
+        #fluidcontainer {
+            box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 24px 0 rgba(0, 0, 0, 0.19);
+            margin-bottom: 5rem;
+            width: 92%;
+        }
+        #imgf2, #imgf1{
+            margin-top:3rem;
+        }
+        #imgf1 {
+            margin-left: 2rem;
+            opacity: 0.8;
+        }
+        #fluidcontainer:hover #imgf1{
+          opacity:1;
+        }
+            #imgf2 div {
+                margin-top: 10px;
+            }
+        #btnsubmit{
+            margin-left:41%;
+            margin-top:1.5%;
+            margin-bottom:3%;
+        }
+        .sessionName {
+            animation-name: sessiontext;
+            animation-duration: 2s;
+            text-align: center;
+        }
+        @@keyframes
+        sessiontext {
+            0% {
+                margin-top: 3%;
+                
+            }
+            50% {
+                
+                margin-top: 0;
+                
+            }
+}
+        .control-label {
+            font-size: 3rem;
+            text-shadow: 0.1px 1px 0px 1px;
+            background: -webkit-linear-gradient(#3BCCE1, #0C6031);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body>
+  @using (Html.BeginForm("ViewDetails", "User"))
+    {
+
+
+        <br /><p class="sessionName"> @Html.Label(Convert.ToString("Welcome! " + Session["Name"]), htmlAttributes: new { @class = "control-label col-md-12" })</p>
+
+
+    <br /><br />
+
+        <br />
+
+        <br />
+
+
+            <div id="main">
+                @foreach (var item in Model)
+                {
+                    if (item.BookDetails != "Decline")
+                    {
+                <div class="container-fluid" id="fluidcontainer">
+                    <div class="row">
+                        <div class="propname">
+                            @Html.DisplayFor(modelItem => item.PropName)
+                        </div>
+                        <div class="col-sm-3 col-md-6 col-lg-4" id="imgf1">
+                            <div>
+
+                                @{
+                                    var imageDataURL = "";
+
+                                    if (item.HImg1 != null)
+                                    {
+                                        string imageBase64Data = Convert.ToBase64String(item.HImg1);
+                                        imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                        <img src="@imageDataURL" title="@imageDataURL" style="width:23rem; height:23rem;" />
+
+                                    }
+                                    else
+                                    {
+                                        <img src="~/Content/Image/gallery2.png" title="House Image" class="imgig1" style="width:23rem; height:23rem;"/>
+                                    }
+
+                                }
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-6" id="imgf2">
+
+                            <div>
+
+                                @Html.DisplayFor(modelItem => item.PropType)
+                            </div>
+                            <div>
+
+
+
+                                @Html.DisplayFor(modelItem => item.PropStatus)
+                            </div>
+                            <div>
+
+                                @Html.DisplayFor(modelItem => item.PropRent)
+                            </div>
+                            <div>
+
+                                @Html.DisplayFor(modelItem => item.PropAddress)
+                            </div>
+                            <div>
+
+                                @Html.DisplayFor(modelItem => item.PropDescription)
+                            </div>
+                            <div>
+
+                                @Html.DisplayFor(modelItem => item.PropContact)
+                            </div>
+                        </div>
+
+                    </div>
+
+                            <hr style="border: 1px solid #bfbbbb;" />
+
+
+                            <button class="btn btn-primary" id="btnsubmit"> <b> @Html.ActionLink("View Details", "ViewDetails", new { id = item.PropId }, new { @class = "MyAction" })</b></button>
+
+                        
+                </div>
+                    <br />
+                                        }
+
+                                    }
+
+            </div>
+
+                                        
+                                    }
+
+    
+    
+</body>
+</html>

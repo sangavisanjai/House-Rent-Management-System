@@ -1,0 +1,521 @@
+﻿
+@model HouseRentManagementSystem.Models.House
+
+@{
+    ViewBag.Title = "ViewDetails";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+<html>
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        .MyAction {
+            color:white;
+            text-decoration: none;
+        }
+
+        .container-fluid {
+            margin-left: 10%;
+        }
+
+        #PropName {
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 2px 2px #5993f0;
+        }
+
+        #details {
+            align-content: center;
+            display: flex;
+            padding: 20px;
+        }
+
+        .unlst {
+            list-style-type: none;
+        }
+
+        #PropDesc {
+            font-size: 25px;
+        }
+
+        .unlst li {
+            margin-top: 25px;
+            font-weight: 600;
+        }
+
+        #PropDesc {
+            margin-top: 0px;
+        }
+
+        #containerid {
+            width: 100%;
+        }
+
+
+            #containerid ul li {
+                list-style-type: none;
+                line-height: 2.2em;
+                font-size: 16px;
+            }
+
+            #containerid ul {
+                columns: 3;
+                -webkit-columns: 3;
+                -moz-columns: 3;
+            }
+
+                #containerid ul li content {
+                    font-weight: 600;
+                }
+
+
+
+        #PropImage {
+            opacity: 0.8;
+        }
+
+        .row:hover #PropImage {
+            opacity: 1;
+        }
+
+        #bottomrow {
+            line-height: 1rem;
+        }
+
+        #btmcol {
+            color: black;
+        }
+
+        @@media screen and (max-width: 1199px) {
+            #btmcol {
+                text-align: center;
+                margin-top: 2rem;
+            }
+
+            #bottomrow {
+                margin: 0;
+                position: relative;
+                top: 50%;
+                left: 50%;
+                -ms-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+                margin-top: 2rem;
+            }
+        }
+
+        #footercontainer {
+            background-image: linear-gradient(to right bottom, #4374be, #1595be, #5dadb0, #9dbfae, #cdd1c5);
+            margin-top: 8rem;
+            display: grid;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .footerimg {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hldr {
+            font-weight: 700;
+        }
+
+        .footerprofile {
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            border: 2px solid black;
+        }
+
+        #footerprofileName {
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+
+        .footercontent {
+            color: white;
+        }
+        #PropImage p{
+            display:none;
+        }
+
+    </style>
+
+
+    <style>
+        .img-responsive{
+            width:100%;
+            height:80%;
+        }
+        .multi-item-carousel .carousel-inner > .item {
+            transition: 500ms ease-in-out left;
+        }
+      .multi-item-carousel .carousel-inner .active.left {
+        left: -33%;
+      }
+      .multi-item-carousel .carousel-inner .active.right {
+        left: 33%;
+      }
+      .multi-item-carousel .carousel-inner .next {
+        left: 33%;
+      }
+      .multi-item-carousel .carousel-inner .prev {
+        left: -33%;
+      }
+      @@media all and (transform-3d), (-webkit-transform-3d) {
+        .multi-item-carousel .carousel-inner > .item {
+          transition: 500ms ease-in-out left;
+          transition: 500ms ease-in-out all;
+          -webkit-backface-visibility: visible;
+          backface-visibility: visible;
+          transform: none !important;
+        }
+      }
+      .multi-item-carousel .carouse-control.left,
+      .multi-item-carousel .carouse-control.right {
+        background-image: none;
+      }
+    </style>
+</head>
+<body>
+
+
+    <div>
+        <h2 id="PropName"><b>@Model.PropName </b></h2>
+
+
+        <hr style="        border: 2px solid #1e498f
+" /><br /><br />
+        @using (Html.BeginForm("SaveBookingDetails", "User", FormMethod.Post))
+        {
+            <form class="ViewDetailsform" action="" method="post">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-4" id="PropImage">
+                            @{
+                                var imageDataURL = "";
+
+                                if (Model.HImg1 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg1);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <img src="@imageDataURL" title="House" style="width:34rem; height:34rem; border-radius:1%;" name="ImageHImg1" />
+                                    { TempData["Data1"] = imageDataURL; }
+                                    <p name="imageUrl">imageDataURL</p>
+
+                                }
+                                else
+                                {
+                                    <img src="~/Content/Image/gallery2.png" title="House Image" class="imgig1" style="width:34rem; height:34rem;" />
+                                }
+
+                            }
+
+                        </div>
+                        <div class="col-lg-1"></div>
+                        <div class="col-lg-7" id="details">
+                            <ul class="unlst">
+                                <li id="PropDesc" style="text-transform:uppercase; font-size:25px; font-weight:700">
+                                    <i class="fas fa-home"></i>
+                                    @Html.Hidden("PropName")
+                                    @Html.DisplayFor(modelItem => Model.PropDescription)
+
+                                    @Html.Hidden("PropDescription")
+
+                                </li>
+
+                                <li>
+                                    <i class="fas fa-tags"></i>
+                                    @Html.DisplayFor(modelItem => Model.PropRent) per / month
+                                    @Html.Hidden("PropRent")
+                                </li>
+                                <li>
+                                    <i class="far fa-address-book"></i>
+                                    @Html.DisplayFor(modelItem => Model.PropAddress)
+                                    @Html.Hidden("PropAddress")
+                                </li>
+                                <li>
+                                    <i class="fas fa-phone-alt"></i>
+                                    @Html.DisplayFor(modelItem => Model.PropContact)
+                                    @Html.Hidden("PropContact")
+                                </li>
+                                <li>
+                                    <i class="fas fa-users"></i>
+                                    @Html.DisplayFor(modelItem => Model.AvailableFor)
+                                    @Html.Hidden("AvailableFor")
+                                </li>
+                                <li>
+                                    <i class="fas fa-calendar-week"></i>
+                                    @Html.DisplayFor(modelItem => Model.AvailableFrom)
+                                    @Html.Hidden("AvailableFrom")
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+                <br /><br />
+                <h2 id="PropName"><b>Additional Information</b></h2><br />
+                <div class="container" id="containerid">
+                    <ul>
+                        <li>
+                            <content>Property Type:</content>
+                            @Html.DisplayFor(modelItem => Model.PropType)
+                            @Html.Hidden("PropType")
+                        </li>
+                        <li>
+                            <content>Property Status:</content>
+                            @Html.DisplayFor(modelItem => Model.PropStatus)
+                            @Html.Hidden("PropStatus")
+                        </li>
+                        <li>
+                            <content>Property Size:</content>
+                            @Html.DisplayFor(modelItem => Model.PropSize)
+                            @Html.Hidden("PropSize")
+                        </li>
+
+                        <li>
+                            <content>Front Facing:</content>
+                            @Html.DisplayFor(modelItem => Model.PropFacing)
+                            @Html.Hidden("PropFacing")
+                        </li>
+                        <li>
+                            <content>Pet Friendly:</content>
+                            @Html.DisplayFor(modelItem => Model.PetFriendly)
+                            @Html.Hidden("PetFriendly")
+                        </li>
+                        <li>
+                            <content>Flooring:</content>
+                            @Html.DisplayFor(modelItem => Model.Flooring)
+                            @Html.Hidden("Flooring")
+                            @Html.Hidden("Email")
+                        </li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="carousel slide multi-item-carousel" id="theCarousel">
+                            <div class="carousel-inner">
+                               @* <div class="item active">
+                                    <div class="col-xs-4">
+                                        <a href="#1">
+                                            <img src="https://source.unsplash.com/300x300/?perth,australia"
+                                                 class="img-responsive" />
+                                        </a>
+                                    </div>
+                                </div>
+*@
+
+                                @if (Model.HImg2 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg2);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item active">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive" />
+
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (Model.HImg3 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg3);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg4 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg4);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg5 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg5);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg6 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg6);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+
+                                @if (Model.HImg7 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg7);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive" />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg8 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg8);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive" />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg9 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg9);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+                                @if (Model.HImg10 != null)
+                                {
+                                    string imageBase64Data = Convert.ToBase64String(Model.HImg10);
+                                    imageDataURL = string.Format("data:image/jpeg;base64,{0}", imageBase64Data);
+                                    <div class="item">
+                                        <div class="col-xs-4">
+
+                                            ;<img src="@imageDataURL" title="House" name="ImageHImg1" class="img-responsive"  />
+
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                                        <a class="left carousel-control"
+                                           href="#theCarousel"
+                                           data-slide="prev">
+                                            <i class="glyphicon glyphicon-chevron-left"></i>
+                                        </a>
+                                        <a class="right carousel-control"
+                                           href="#theCarousel"
+                                           data-slide="next">
+                                            <i class="glyphicon glyphicon-chevron-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                </div>
+                <br />
+                <div class="row" id="bottomrow">
+                    <div class="col-lg-3"></div>
+                    <div class="col-lg-3" id="btmcol">
+                        <button class="btn btn-primary" type="submit" value="Submit" style="padding:1.1rem 1.1rem;">
+                            Request Property
+                        </button>
+                    </div>
+
+
+                    <div class="col-lg-3" id="btmcol">
+                        <button class="btn btn-primary" type="button" style="padding: 1.1rem 1.1rem;"> <b> @Html.ActionLink("View More Properties", "UserData", new { id = Model.PropId }, new { @class = "MyAction" })</b></button>
+                    </div>
+                    <div class="col-lg-3"></div>
+                </div>
+                <div class="container" id="footercontainer">
+                    <h2 class="hldr">
+                        HOLDER DETAILS
+                    </h2>
+                    <div class="footerimg">
+                        @if (ViewBag.image != null)
+                        {
+                            var base64 = Convert.ToBase64String(ViewBag.image);
+                            var imgsrc = string.Format("data:image/jpg;base64,{0}", base64);
+                            <img src="@imgsrc" class="footerprofile">
+                        }
+                        else
+                        {
+                            <img src="~/Content/Image/userlogo6.png" class="footerprofile" />
+                        }
+                    </div>
+                    @if (ViewBag.FName != null)
+                    {
+                        <h3 id="footerprofileName"> @ViewBag.FName</h3>
+                    }
+                    else
+                    {
+                        <h3> Null</h3>
+                    }
+                    @ViewBag.x
+                    <div class="footercontent">
+                        <h3><i class="far fa-envelope"></i> @ViewBag.email</h3>
+                        <h3><i class="fas fa-phone-alt"></i> @ViewBag.contact</h3>
+                    </div>
+
+
+                </div>
+            </form>
+        }
+    </div>
+   
+
+
+    <script>
+        
+            // Instantiate the Bootstrap carousel
+        $('.multi-item-carousel').carousel({
+                interval: false,
+        });
+
+        // for every slide in carousel, copy the next slide's item in the slide.
+        // Do the same for the next, next item.
+        $('.multi-item-carousel .item').each(function () {
+          var next = $(this).next();
+          if (!next.length) {
+                next = $(this).siblings(':first');
+            }
+            
+          next.children(':first-child').clone().appendTo($(this));
+
+          if (next.next().length > 0) {
+                next.next().children(':first-child').clone().appendTo($(this));
+          } else {
+                $(this)
+                    .siblings(':first')
+                    .children(':first-child')
+                    .clone()
+                    .appendTo($(this));
+          }
+        });
+    
+    </script>
+</body>
+
+</html>

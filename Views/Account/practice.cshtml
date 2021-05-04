@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "practice";
+    Layout = "~/Views/Shared/_Layout1.cshtml";
+}
+<html>
+<head>
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <link href="//cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <script src="//cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+    <style>
+        body{
+            margin-top:5rem;
+        }
+    </style>
+</head>
+<body>
+    <h2>practice</h2>
+    <div>
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <td>ID</td>
+                    <td>Name</td>
+
+                    <td>Property</td>
+                </tr>
+            </thead>
+        </table>
+    </div>
+</body>
+</html>
+
+

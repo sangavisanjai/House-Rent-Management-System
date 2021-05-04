@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Database1ModelStoreContainer" CdmEntityContainer="Database1Entities1">
+    <EntitySetMapping Name="Houses">
+      <EntityTypeMapping TypeName="Database1Model.House">
+        <MappingFragment StoreEntitySet="House">
+          <ScalarProperty Name="BookDetails" ColumnName="BookDetails" />
+          <ScalarProperty Name="HImg10" ColumnName="HImg10" />
+          <ScalarProperty Name="HImg9" ColumnName="HImg9" />
+          <ScalarProperty Name="HImg8" ColumnName="HImg8" />
+          <ScalarProperty Name="HImg7" ColumnName="HImg7" />
+          <ScalarProperty Name="HImg6" ColumnName="HImg6" />
+          <ScalarProperty Name="HImg5" ColumnName="HImg5" />
+          <ScalarProperty Name="HImg4" ColumnName="HImg4" />
+          <ScalarProperty Name="HImg3" ColumnName="HImg3" />
+          <ScalarProperty Name="HImg2" ColumnName="HImg2" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="HImg1" ColumnName="HImg1" />
+          <ScalarProperty Name="AvailableFrom" ColumnName="AvailableFrom" />
+          <ScalarProperty Name="Flooring" ColumnName="Flooring" />
+          <ScalarProperty Name="AvailableFor" ColumnName="AvailableFor" />
+          <ScalarProperty Name="PetFriendly" ColumnName="PetFriendly" />
+          <ScalarProperty Name="PropFacing" ColumnName="PropFacing" />
+          <ScalarProperty Name="PropSize" ColumnName="PropSize" />
+          <ScalarProperty Name="PropDescription" ColumnName="PropDescription" />
+          <ScalarProperty Name="PropId" ColumnName="PropId" />
+          <ScalarProperty Name="PropName" ColumnName="PropName" />
+          <ScalarProperty Name="PropType" ColumnName="PropType" />
+          <ScalarProperty Name="PropStatus" ColumnName="PropStatus" />
+          <ScalarProperty Name="PropRent" ColumnName="PropRent" />
+          <ScalarProperty Name="PropAddress" ColumnName="PropAddress" />
+          <ScalarProperty Name="PropContact" ColumnName="PropContact" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisterUsers">
+      <EntityTypeMapping TypeName="Database1Model.RegisterUser">
+        <MappingFragment StoreEntitySet="RegisterUser">
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="AadharNo" ColumnName="AadharNo" />
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RegisterCustomers">
+      <EntityTypeMapping TypeName="Database1Model.RegisterCustomer">
+        <MappingFragment StoreEntitySet="RegisterCustomer">
+          <ScalarProperty Name="ProfileImage" ColumnName="ProfileImage" />
+          <ScalarProperty Name="ResetPasswordCode" ColumnName="ResetPasswordCode" />
+          <ScalarProperty Name="AadharNo" ColumnName="AadharNo" />
+          <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Bookings">
+      <EntityTypeMapping TypeName="Database1Model.Booking">
+        <MappingFragment StoreEntitySet="Booking">
+          <ScalarProperty Name="SProfileImage" ColumnName="SProfileImage" />
+          <ScalarProperty Name="SMobileNumber" ColumnName="SMobileNumber" />
+          <ScalarProperty Name="SLastName" ColumnName="SLastName" />
+          <ScalarProperty Name="SFirstName" ColumnName="SFirstName" />
+          <ScalarProperty Name="SellEmail" ColumnName="SellEmail" />
+          <ScalarProperty Name="CustEmail" ColumnName="CustEmail" />
+          <ScalarProperty Name="HImg1" ColumnName="HImg1" />
+          <ScalarProperty Name="AvailableFrom" ColumnName="AvailableFrom" />
+          <ScalarProperty Name="Flooring" ColumnName="Flooring" />
+          <ScalarProperty Name="AvailableFor" ColumnName="AvailableFor" />
+          <ScalarProperty Name="PetFriendly" ColumnName="PetFriendly" />
+          <ScalarProperty Name="PropFacing" ColumnName="PropFacing" />
+          <ScalarProperty Name="PropSize" ColumnName="PropSize" />
+          <ScalarProperty Name="PropDescription" ColumnName="PropDescription" />
+          <ScalarProperty Name="Book" ColumnName="Book" />
+          <ScalarProperty Name="PropContact" ColumnName="PropContact" />
+          <ScalarProperty Name="PropAddress" ColumnName="PropAddress" />
+          <ScalarProperty Name="PropRent" ColumnName="PropRent" />
+          <ScalarProperty Name="PropStatus" ColumnName="PropStatus" />
+          <ScalarProperty Name="PropType" ColumnName="PropType" />
+          <ScalarProperty Name="PropName" ColumnName="PropName" />
+          <ScalarProperty Name="BookId" ColumnName="BookId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

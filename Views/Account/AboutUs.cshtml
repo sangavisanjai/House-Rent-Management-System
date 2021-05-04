@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "AboutUs";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link href="https://fonts.googleapis.com/css2?family=Abel&family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height:35px;
+        }
+        .container-fluid{
+            margin-top:10rem;
+        }
+        .bannercontent p {
+            margin-top: 15px;
+            font-size: 14px;
+            line-height: 24px;
+            color: #000;
+            font-weight: 500;
+            font-family: Montserrat-Regular;
+        }
+        .textBlack, .textBlue {
+            color: #16aace;
+            font-family: Montserrat-Medium;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        p {
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+        .company {
+            width:100%;
+            font-size: 1.33rem;
+            display: flex;
+            border: 1px solid #444;
+            padding: 8px 10px;
+            font-weight: bold;
+            text-align: center;
+            align-items: center;
+            justify-content: center;
+            margin-top: 70px;
+        }
+        .company a{
+            text-decoration:none;
+        }
+        .Higherpurpose {
+            background: transparent linear-gradient( 90deg,#15abd0,#43b388) 0 0 no-repeat padding-box;
+            opacity: .95;
+            padding: 25px 0;
+            color: white;
+            font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji;
+        }
+        .handimg{
+            margin-top:50px;
+            display:flex;
+            flex-wrap:wrap;
+            align-items:center;
+            justify-content:center;
+            
+        }
+        .handimg div{
+            padding:2rem;
+           
+        }
+      
+        @@media (min-width: 480px) and (max-width: 767px) {
+            p {
+                text-align: justify;
+            }
+        }
+        @@media (min-width: 480px) and (max-width: 767px) {
+        }
+.bannerimg img{
+    width: 100%!important;
+    height: auto!important;
+}
+        
+      
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="banner-content">
+                    <h1>ABOUT US</h1>
+                    <p>HouseRent Management is an end to end <a href="" class="textBlack" style="text-decoration:none;"> property management company</a> providing comprehensive services non-residents Indians in Pune, Bangalore, Hyderabad, Chennai, Delhi NCR, and Mumbai.</p>
+                </div>
+            </div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-6">
+                <div class="bannerimg">
+                    <img src="~/Content/Image/aboutimg1.png" />
+                </div>
+            </div>
+        </div>
+      
+        <div class="row">
+            <div class="col-lg-12 company">
+                <a href="C:\Users\SANGAVI\source\repos\HouseRentManagementSystem\HouseRentManagementSystem\Views\Account\AboutUs.cshtml"> </a>
+               <b> @Html.ActionLink("COMPANY", "Index")</b>
+
+            </div>
+        </div>
+        <div class="row" style="margin-top:50px;">
+            <div class="col-lg-7">
+                <div class="bannerimg">
+                    <img src="~/Content/Image/aboutimg2.png" />
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="banner-content">
+                    <h1 style="  font-size: 2rem; font-family: Montserrat-Bold; color: #3e3939; ">Welcome to HOUSERENT MANAGEMENT</h1>
+                    <p>
+                        HouseRent Management is a <a href="" class="textBlack" style="text-decoration:none;"> property management company  </a> from India for Indians founded on the principles of ethics, transparency, and quality. We leverage technology to provide superior service to our customers.
+                    </p>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row Higherpurpose" style="margin-top:50px;" >
+            <div class="col-lg-12">
+                <h2>Higher Purpose</h2><br />
+                                       <p> HouseRent Management has been founded with the purpose of providing trustworthy <span class="textBlack" style="color:#000">property management services </span>  in India to Non-resident Indians across the globe. In a country like India, where resources are scarce, Non-Resident owners are often compelled to lock their houses due to a lack of property management options. HouseRent Management believes that a large resource like an empty house should be put to optimal use. This is good for the customer and good for the country. As India’s leading property management company, HouseRent Management is working to unlock those locked doors.</p>
+            </div>
+        </div>
+        <div class="handimg">
+            
+            <div > <img src="~/Content/Image/aboutimg3.png"/> </div>
+            
+            <div ><img src="~/Content/Image/aboutimg4.png" /></div>
+            
+            <div><img src="~/Content/Image/aboutimg5.png" /></div>
+            
+            <div ><img src="~/Content/Image/aboutimg6.png" /></div>
+            
+            <div ><img src="~/Content/Image/aboutimg7.png" /></div>
+            
+
+        </div>
+</div>
+    
+
+</body>
+</html>
+
