@@ -53,9 +53,7 @@ namespace HouseRentManagementSystem.Controllers
             return View();
         }
         
-        //The form's data in Register view is posted to this method.
-        //We have binded the Register View with Register ViewModel, so we can accept object of Register class as parameter.
-        //This object contains all the values entered in the form by the user.
+        
         [HttpGet]
         public ActionResult ForgotPassword()
         {
@@ -70,7 +68,7 @@ namespace HouseRentManagementSystem.Controllers
 
             var fromEmail = new MailAddress("sangavisanjai222@gmail.com", "support@HouseRentSystem");
             var toEmail = new MailAddress(emailID);
-            var fromEmailPassword = "Sangavi@2000"; // Replace with actual password
+            var fromEmailPassword = "Sangavi@2000"; 
 
             string subject = "";
             string body = "";
@@ -98,7 +96,7 @@ namespace HouseRentManagementSystem.Controllers
                 EnableSsl = true,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 
-                //  UseDefaultCredentials = true,
+                
                 Credentials = new NetworkCredential(fromEmail.Address, fromEmailPassword)
             };
 
@@ -111,20 +109,13 @@ namespace HouseRentManagementSystem.Controllers
                
                     smtp.Send(message);
                 
-               /* catch (Exception ex)
-                {
-                    Console.WriteLine("Exception caught in CreateTestMessage2(): {0}",
-                        ex.ToString());
-                }*/
-            
+             
         }
 
         [HttpPost]
         public ActionResult ForgotPassword(string EmailID)
         {
-            //Verify Email ID
-            //Generate Reset password link 
-            //Send Email 
+             
             string message = "";
             
 
@@ -138,8 +129,7 @@ namespace HouseRentManagementSystem.Controllers
                     string resetCode = Guid.NewGuid().ToString();
                     SendVerificationLinkEmail(account.Email, resetCode, "ResetPassword");
                     account.ResetPasswordCode = resetCode;
-                    //This line I have added here to avoid confirm password not match issue , as we had added a confirm password property 
-                    //in our model class in part 1
+                    
                     dc.Configuration.ValidateOnSaveEnabled = false;
                     dc.SaveChanges();
                     message = "Reset password link has been sent to your email id.";
@@ -157,9 +147,7 @@ namespace HouseRentManagementSystem.Controllers
 
         public ActionResult ResetPassword(string id)
         {
-            //Verify the reset password link
-            //Find account associated with this link
-            //redirect to reset password page
+            
 
             if (string.IsNullOrWhiteSpace(id))
             {
@@ -213,19 +201,13 @@ namespace HouseRentManagementSystem.Controllers
         [HttpPost]
         public ActionResult SaveRegisterDetails(Register registerDetails, HttpPostedFileBase image)
         {
-            //We check if the model state is valid or not. We have used DataAnnotation attributes.
-            //If any form value fails the DataAnnotation validation the model state becomes invalid.
-           
-                //create database context using Entity framework
+            
                 using (var databaseContext = new Database1Entities1())
                 {
 
-                    //If the model state is valid i.e. the form values passed the validation then we are storing the User's details in DB.
+                    
                     RegisterUser reglog = new RegisterUser();
-                    var userWithSameEmail = databaseContext.RegisterUsers.Where(m => m.Email == registerDetails.Email).FirstOrDefault(); //checking if the emailid already exits for any user
-                    //var user = databaseContext.RegisterUsers.Where(query => query.Email.Equals(registerDetails.Email)).SingleOrDefault();
-                    //If user is present, then true is returned.
-                    //Save all details in RegitserUser object
+                    var userWithSameEmail = databaseContext.RegisterUsers.Where(m => m.Email == registerDetails.Email).FirstOrDefault(); 
                     if (userWithSameEmail == null)
                     {
                         
@@ -274,19 +256,14 @@ namespace HouseRentManagementSystem.Controllers
         [HttpPost]
         public ActionResult SaveRegisterCustomer(Register registerDetails, HttpPostedFileBase image)
         {
-            //We check if the model state is valid or not. We have used DataAnnotation attributes.
-            //If any form value fails the DataAnnotation validation the model state becomes invalid.
-
-            //create database context using Entity framework
+            
             using (var databaseContext = new Database1Entities1())
             {
 
-                //If the model state is valid i.e. the form values passed the validation then we are storing the User's details in DB.
+
                 RegisterCustomer reglog = new RegisterCustomer();
-                var userWithSameEmail = databaseContext.RegisterCustomers.Where(m => m.Email == registerDetails.Email).FirstOrDefault(); //checking if the emailid already exits for any user
-                                                                                                                                     //var user = databaseContext.RegisterUsers.Where(query => query.Email.Equals(registerDetails.Email)).SingleOrDefault();
-                                                                                                                                     //If user is present, then true is returned.
-                                                                                                                                     //Save all details in RegitserUser object
+                var userWithSameEmail = databaseContext.RegisterCustomers.Where(m => m.Email == registerDetails.Email).FirstOrDefault(); 
+                                                                                                                                     
                 if (userWithSameEmail == null)
                 {
                     reglog.FirstName = registerDetails.FirstName;
@@ -366,17 +343,17 @@ namespace HouseRentManagementSystem.Controllers
             }
         }
 
-        //function to check if User is valid or not
+        
         public RegisterUser IsValidUser(LoginViewModel model)
         {
             using (var dataContext = new Database1Entities1())
             {
-                //Retireving the user details from DB based on username and password enetered by user.
+                
                 RegisterUser user = dataContext.RegisterUsers.Where(query => query.Email.Equals(model.Email) && query.Password.Equals(model.Password)).SingleOrDefault();
-                //If user is present, then true is returned.
+                
                 if (user == null)
                     return null;
-                //If user is not present false is returned.
+                
                 else
                     return user;
             }
@@ -386,11 +363,11 @@ namespace HouseRentManagementSystem.Controllers
         [HttpPost]
         public ActionResult LoginCustomer(LoginViewModel model)
         {
-            //Checking the state of model passed as parameter.
+            
             if (ModelState.IsValid)
             {
 
-                //Validating the user, whether the user is valid or not.
+                
                 var isValidUser = IsValidUser1(model);
                 if (isValidUser != null)
                 {
@@ -399,29 +376,29 @@ namespace HouseRentManagementSystem.Controllers
                 }
                 else
                 {
-                    //If the username and password combination is not present in DB then error message is shown.
+                    
                     TempData["SellerLogin"] = "Wrong Username and password combination !";
                     return RedirectToAction("Login");
                 }
             }
             else
             {
-                //If model state is not valid, the model with error message is returned to the View.
+                
                 return View(model);
             }
         }
 
-        //function to check if User is valid or not
+        
         public RegisterCustomer IsValidUser1(LoginViewModel model)
         {
             using (var dataContext = new Database1Entities1())
             {
-                //Retireving the user details from DB based on username and password enetered by user.
+                
                 RegisterCustomer user = dataContext.RegisterCustomers.Where(query => query.Email.Equals(model.Email) && query.Password.Equals(model.Password)).SingleOrDefault();
-                //If user is present, then true is returned.
+                
                 if (user == null)
                     return null;
-                //If user is not present false is returned.
+                
                 else
                     return user;
             }
@@ -429,7 +406,7 @@ namespace HouseRentManagementSystem.Controllers
         public ActionResult Logout()
         {
             System.Web.Security.FormsAuthentication.SignOut();
-            Session.Abandon(); // it will clear the session at the end of request
+            Session.Abandon();
             return RedirectToAction("Index");
         }
          
